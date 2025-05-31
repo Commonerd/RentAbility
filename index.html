@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      RentAbility - Your Affordable Rent Calculator & Housing Budget Tool
+    </title>
+    <meta
+      name="description"
+      content="Calculate your affordable rent based on income and expenses. Get personalized insights for smart housing decisions. Multi-language support. Find your ideal rent."
+    />
+    <meta
+      name="keywords"
+      content="rent calculator, affordable rent, housing budget, income to rent ratio, cost of living, rental affordability, personal finance, budget planner, housing expenses, rent to income calculator, suitable rent, apartment budget"
+    />
+    <meta name="author" content="Your Name/Company Name" />
+    <link rel="canonical" href="https://www.rentability.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.rentability.com/" />
+    <meta
+      property="og:title"
+      content="RentAbility - Your Affordable Rent Calculator & Housing Budget Tool"
+    />
+    <meta
+      property="og:description"
+      content="Calculate your affordable rent based on income and expenses. Get personalized insights for smart housing decisions. Multi-language support."
+    />
+    <meta
+      property="og:image"
+      content="https://www.rentability.com/favicon-192x192.png"
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.rentability.com/" />
+    <meta
+      name="twitter:title"
+      content="RentAbility - Your Affordable Rent Calculator & Housing Budget Tool"
+    />
+    <meta
+      name="twitter:description"
+      content="Calculate your affordable rent based on income and expenses. Get personalized insights for smart housing decisions. Multi-language support."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.rentability.com/favicon-192x192.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      /* CSS Code Here */
+      body {
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f0f2f5; /* Light gray background */
+        color: #333;
+        transition: background-color 0.5s ease;
+      }
+
+      .container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 650px; /* Slightly wider for better ad placement */
+        width: 90%;
+        transition: transform 0.3s ease-in-out;
+        position: relative;
+      }
+
+      .container:hover {
+        transform: translateY(-5px);
+      }
+
+      h1 {
+        color: #28a745; /* Green for money/affordability */
+        margin-bottom: 25px;
+        font-size: 2.2em;
+        letter-spacing: 0.5px;
+      }
+
+      .description {
+        margin-bottom: 30px;
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #555;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align label and input to start */
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #444;
+      }
+
+      .input-group input[type="number"] {
+        width: calc(100% - 24px); /* Account for padding and border */
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1.1em;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
+
+      .input-group input[type="number"]:focus {
+        border-color: #007bff; /* Blue focus color */
+        outline: none;
+      }
+
+      .input-group span.currency {
+        margin-top: 5px; /* Space between input and currency */
+        font-size: 0.9em;
+        color: #666;
+        align-self: flex-end; /* Align currency to end of input row */
+      }
+
+      .controls button {
+        background-color: #007bff; /* Blue for action */
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: auto; /* Ensure button doesn't stretch */
+      }
+
+      .controls button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+      }
+
+      .controls button:active {
+        transform: translateY(0);
+      }
+
+      .result-section {
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        text-align: left;
+        color: #333;
+      }
+
+      .result-section h3 {
+        color: #007bff;
+        margin-bottom: 15px;
+      }
+
+      .result-section p {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+      }
+
+      .result-section .highlight {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #28a745; /* Green for positive outcome */
+      }
+
+      .result-section .warning {
+        color: #dc3545; /* Red for warning */
+        font-weight: bold;
+      }
+
+      .language-selector {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 0.9em;
+      }
+
+      .language-selector select {
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        cursor: pointer;
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+
+      .language-selector select:focus {
+        border-color: #007bff;
+      }
+
+      /* Differentiated Feature: Budget Breakdown & Insights */
+      .budget-insights {
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        text-align: left;
+        color: #666;
+      }
+
+      .budget-insights h3 {
+        color: #ffc107; /* Orange for insights */
+        margin-bottom: 15px;
+      }
+
+      .budget-insights p {
+        margin-bottom: 8px;
+        font-size: 0.95em;
+      }
+
+      .budget-insights ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .budget-insights ul li {
+        background-color: #f8f9fa; /* Light background for list items */
+        border-left: 5px solid #007bff; /* Blue accent border */
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1em;
+      }
+
+      .budget-insights ul li.recommendation {
+        border-left-color: #28a745; /* Green accent for primary recommendation */
+        font-weight: bold;
+        color: #28a745;
+      }
+
+      /* Ad Placement Styles */
+      .ad-placement {
+        margin: 25px auto; /* 상하 여백, 중앙 정렬 */
+        text-align: center;
+        background-color: #e9ecef; /* 광고 영역 배경색 */
+        padding: 15px;
+        border-radius: 8px;
+        min-height: 90px; /* 최소 높이 지정 (광고가 로드되기 전 레이아웃 흔들림 방지) */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9em;
+        color: #6c757d;
+        overflow: hidden; /* 광고 내용이 넘치지 않도록 */
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 1.8em;
+        }
+        .input-group input[type="number"] {
+          width: calc(100% - 16px); /* Adjust for smaller screens */
+          padding: 10px;
+        }
+        .controls button {
+          padding: 12px 20px;
+          font-size: 1em;
+        }
+        .language-selector {
+          top: 10px;
+          right: 10px;
+          font-size: 0.8em;
+        }
+        .result-section .highlight,
+        .result-section .warning {
+          font-size: 1.1em;
+        }
+        .ad-placement {
+          margin: 15px auto;
+          padding: 10px;
+          min-height: 60px; /* Mobile ad size consideration */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="ad-top" class="ad-placement">
+        <span data-i18n="adPlaceholderTop">Advertisement (Top Banner)</span>
+      </div>
+
+      <div class="language-selector">
+        <label for="language-select" class="sr-only">Select Language</label>
+        <select id="language-select">
+          <option value="en">English</option>
+          <option value="ko">한국어</option>
+          <option value="es">Español</option>
+          <option value="ar">العربية</option>
+          <option value="ru">Русский</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+        </select>
+      </div>
+
+      <h1 data-i18n="title">
+        💰 RentAbility - Your Affordable Rent Calculator
+      </h1>
+      <p class="description" data-i18n="description">
+        Determine how much rent you can comfortably afford based on your monthly
+        income and expenses. Make informed housing decisions.
+      </p>
+
+      <div class="input-group">
+        <label for="monthlyIncome" data-i18n="monthlyIncomeLabel"
+          >Your Monthly Net Income:</label
+        >
+        <input
+          type="number"
+          id="monthlyIncome"
+          placeholder="e.g., 3000"
+          min="0"
+        />
+        <span class="currency" id="currencySymbolIncome"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="monthlyExpenses" data-i18n="monthlyExpensesLabel"
+          >Your Other Monthly Expenses (excluding rent):</label
+        >
+        <input
+          type="number"
+          id="monthlyExpenses"
+          placeholder="e.g., 1000"
+          min="0"
+        />
+        <span class="currency" id="currencySymbolExpenses"></span>
+      </div>
+
+      <div class="controls">
+        <button id="calculateButton" data-i18n="calculateButton">
+          Calculate Affordable Rent
+        </button>
+      </div>
+
+      <div class="result-section">
+        <h3 data-i18n="resultTitle">Your Rentability Analysis</h3>
+        <p>
+          <strong data-i18n="recommendedRent"
+            >Recommended Max Monthly Rent:</strong
+          >
+          <span class="highlight" id="recommendedRentResult">0</span>
+          <span class="currency" id="currencySymbolResult"></span>
+        </p>
+        <p>
+          <strong data-i18n="rentToIncomeRatio"
+            >Rent-to-Income Ratio (Recommended):</strong
+          >
+          <span class="highlight" id="rentToIncomeRatioResult">0%</span>
+        </p>
+        <p
+          id="affordabilityMessage"
+          class="warning"
+          data-i18n="affordabilityMessage"
+        ></p>
+      </div>
+
+      <div class="budget-insights">
+        <h3 data-i18n="insightsTitle">Budget Breakdown & Insights</h3>
+        <p data-i18n="insightsDescription">
+          Understand where your money goes and get personalized recommendations.
+        </p>
+        <ul>
+          <li class="recommendation">
+            <strong data-i18n="housingRule"
+              >Standard Housing Rule (30% Income):</strong
+            >
+            <span id="housingRuleResult">0</span>
+            <span class="currency" id="currencySymbolHousingRule"></span>
+          </li>
+          <li>
+            <strong data-i18n="incomeAfterExpenses"
+              >Income After Other Expenses:</strong
+            >
+            <span id="incomeAfterExpensesResult">0</span>
+            <span
+              class="currency"
+              id="currencySymbolIncomeAfterExpenses"
+            ></span>
+          </li>
+          <li>
+            <strong data-i18n="discretionaryIncome"
+              >Estimated Discretionary Income (after recommended rent):</strong
+            >
+            <span id="discretionaryIncomeResult">0</span>
+            <span class="currency" id="currencySymbolDiscretionary"></span>
+          </li>
+        </ul>
+        <p
+          id="budgetAdvice"
+          data-i18n="budgetAdvice"
+          style="font-style: italic"
+        ></p>
+      </div>
+
+      <div id="ad-bottom" class="ad-placement">
+        <span data-i18n="adPlaceholderBottom"
+          >Advertisement (Bottom Banner)</span
+        >
+      </div>
+    </div>
+
+    <script>
+      /* JavaScript Code Here */
+      const monthlyIncomeInput = document.getElementById("monthlyIncome");
+      const monthlyExpensesInput = document.getElementById("monthlyExpenses");
+      const calculateButton = document.getElementById("calculateButton");
+      const recommendedRentResult = document.getElementById(
+        "recommendedRentResult"
+      );
+      const rentToIncomeRatioResult = document.getElementById(
+        "rentToIncomeRatioResult"
+      );
+      const affordabilityMessage = document.getElementById(
+        "affordabilityMessage"
+      );
+      const languageSelect = document.getElementById("language-select");
+
+      // Currency symbols for display (use class for easier selection)
+      const currencySymbolSpans = document.querySelectorAll(".currency");
+
+      // Budget Insights elements
+      const housingRuleResult = document.getElementById("housingRuleResult");
+      const incomeAfterExpensesResult = document.getElementById(
+        "incomeAfterExpensesResult"
+      );
+      const discretionaryIncomeResult = document.getElementById(
+        "discretionaryIncomeResult"
+      );
+      const budgetAdvice = document.getElementById("budgetAdvice");
+
+      // Internationalization (i18n) setup
+      const translations = {
+        en: {
+          title: "💰 RentAbility - Your Affordable Rent Calculator",
+          description:
+            "Determine how much rent you can comfortably afford based on your monthly income and expenses. Make informed housing decisions.",
+          monthlyIncomeLabel: "Your Monthly Net Income:",
+          monthlyExpensesLabel: "Your Other Monthly Expenses (excluding rent):",
+          calculateButton: "Calculate Affordable Rent",
+          resultTitle: "Your Rentability Analysis",
+          recommendedRent: "Recommended Max Monthly Rent:",
+          rentToIncomeRatio: "Rent-to-Income Ratio (Recommended):",
+          affordabilityMessageInvalidInput:
+            "Please enter valid positive numbers for income and expenses.",
+          affordabilityMessageTooHighExpenses:
+            "Your expenses are too high to comfortably afford rent at this income level. Consider reducing expenses or increasing income.",
+          affordabilityMessageHighRatio:
+            "Warning: Your recommended rent is a high percentage of your income. Be cautious!",
+          affordabilityMessageGood:
+            "This appears to be a comfortable rent for your income level.",
+          insightsTitle: "Budget Breakdown & Insights",
+          insightsDescription:
+            "Understand where your money goes and get personalized recommendations.",
+          housingRule: "Standard Housing Rule (30% Income):",
+          incomeAfterExpenses: "Income After Other Expenses:",
+          discretionaryIncome:
+            "Estimated Discretionary Income (after recommended rent):",
+          budgetAdvice:
+            "Aim for your rent to be no more than 30% of your net income for comfortable living. If your expenses are high, consider reducing them or finding a lower rent.",
+          adPlaceholderTop: "Advertisement (Top Banner)",
+          adPlaceholderBottom: "Advertisement (Bottom Banner)",
+        },
+        ko: {
+          title: "💰 월세 감당 가능 계산기 - 소득 대비 적정 주거비 테스트",
+          description:
+            "월 소득 및 지출을 기준으로 편안하게 감당할 수 있는 월세 금액을 계산하세요. 현명한 주거 결정을 내리세요.",
+          monthlyIncomeLabel: "월 순수입:",
+          monthlyExpensesLabel: "기타 월 지출 (월세 제외):",
+          calculateButton: "적정 월세 계산하기",
+          resultTitle: "당신의 월세 감당 능력 분석",
+          recommendedRent: "권장 최대 월세:",
+          rentToIncomeRatio: "소득 대비 월세 비율 (권장):",
+          affordabilityMessageInvalidInput:
+            "수입과 지출에 유효한 양수 값을 입력해주세요.",
+          affordabilityMessageTooHighExpenses:
+            "귀하의 지출이 소득에 비해 너무 많아 월세를 감당하기 어렵습니다. 지출을 줄이거나 수입을 늘리는 것을 고려해 보세요.",
+          affordabilityMessageHighRatio:
+            "경고: 권장 월세가 소득의 높은 비율을 차지합니다. 주의하세요!",
+          affordabilityMessageGood:
+            "이 월세는 귀하의 소득 수준에 적절한 것으로 보입니다.",
+          insightsTitle: "예산 분석 및 통찰",
+          insightsDescription:
+            "돈이 어디로 가는지 파악하고 개인화된 조언을 얻으세요.",
+          housingRule: "표준 주거 규칙 (소득의 30%):",
+          incomeAfterExpenses: "기타 지출 후 남는 소득:",
+          discretionaryIncome: "예상되는 가처분 소득 (권장 월세 지출 후):",
+          budgetAdvice:
+            "편안한 생활을 위해 월세는 순수입의 30%를 넘지 않도록 하는 것을 목표로 하세요. 지출이 높다면, 지출을 줄이거나 더 저렴한 월세를 찾는 것을 고려해 보세요.",
+          adPlaceholderTop: "광고 (상단 배너)",
+          adPlaceholderBottom: "광고 (하단 배너)",
+        },
+        es: {
+          title: "💰 RentAbility - Calculadora de Alquiler Asequible",
+          description:
+            "Determine cuánto alquiler puede pagar cómodamente según sus ingresos mensuales y gastos. Tome decisiones de vivienda informadas.",
+          monthlyIncomeLabel: "Ingresos Netos Mensuales:",
+          monthlyExpensesLabel: "Otros Gastos Mensuales (excluyendo alquiler):",
+          calculateButton: "Calcular Alquiler Asequible",
+          resultTitle: "Su Análisis de Asequibilidad de Alquiler",
+          recommendedRent: "Alquiler Mensual Máximo Recomendado:",
+          rentToIncomeRatio: "Ratio de Alquiler a Ingresos (Recomendado):",
+          affordabilityMessageInvalidInput:
+            "Por favor, ingrese números positivos válidos para ingresos y gastos.",
+          affordabilityMessageTooHighExpenses:
+            "Sus gastos son demasiado altos para permitirse el alquiler cómodamente con este nivel de ingresos. Considere reducir gastos o aumentar ingresos.",
+          affordabilityMessageHighRatio:
+            "Advertencia: Su alquiler recomendado es un alto porcentaje de sus ingresos. ¡Tenga cuidado!",
+          affordabilityMessageGood:
+            "Este parece ser un alquiler cómodo para su nivel de ingresos.",
+          insightsTitle: "Análisis de Presupuesto y Perspectivas",
+          insightsDescription:
+            "Comprenda dónde va su dinero y obtenga recomendaciones personalizadas.",
+          housingRule: "Regla Estándar de Vivienda (30% Ingresos):",
+          incomeAfterExpenses: "Ingresos Después de Otros Gastos:",
+          discretionaryIncome:
+            "Ingresos Disponibles Estimados (después del alquiler recomendado):",
+          budgetAdvice:
+            "Procure que su alquiler no supere el 30% de sus ingresos netos para una vida cómoda. Si sus gastos son altos, considere reducirlos o encontrar un alquiler más bajo.",
+          adPlaceholderTop: "Publicidad (Banner Superior)",
+          adPlaceholderBottom: "Publicidad (Banner Inferior)",
+        },
+        ar: {
+          title: "💰 RentAbility - حاسبة الإيجار الميسور",
+          description:
+            "حدد مقدار الإيجار الذي يمكنك تحمله بشكل مريح بناءً على دخلك الشهري ونفقاتك. اتخذ قرارات سكنية مستنيرة.",
+          monthlyIncomeLabel: "صافي الدخل الشهري:",
+          monthlyExpensesLabel: "المصاريف الشهرية الأخرى (باستثناء الإيجار):",
+          calculateButton: "احسب الإيجار الميسور",
+          resultTitle: "تحليل القدرة على الإيجار",
+          recommendedRent: "الحد الأقصى الموصى به للإيجار الشهري:",
+          rentToIncomeRatio: "نسبة الإيجار إلى الدخل (الموصى بها):",
+          affordabilityMessageInvalidInput:
+            "يرجى إدخال أرقام موجبة صحيحة للدخل والمصروفات.",
+          affordabilityMessageTooHighExpenses:
+            "نفقاتك مرتفعة جدًا بحيث لا يمكنك تحمل الإيجار بشكل مريح بهذا المستوى من الدخل. فكر في تقليل النفقات أو زيادة الدخل.",
+          affordabilityMessageHighRatio:
+            "تحذير: إيجارك الموصى به يمثل نسبة عالية من دخلك. كن حذرًا!",
+          affordabilityMessageGood: "يبدو هذا إيجارًا مريحًا لمستوى دخلك.",
+          insightsTitle: "تحليل الميزانية ورؤى",
+          insightsDescription: "افهم أين تذهب أموالك واحصل على توصيات مخصصة.",
+          housingRule: "قاعدة السكن القياسية (30% من الدخل):",
+          incomeAfterExpenses: "الدخل بعد المصاريف الأخرى:",
+          discretionaryIncome: "الدخل التقديري المقدر (بعد الإيجار الموصى به):",
+          budgetAdvice:
+            "اجعل إيجارك لا يزيد عن 30% من صافي دخلك لعيش حياة مريحة. إذا كانت نفقاتك مرتفعة، فكر في تقليلها أو البحث عن إيجار أقل.",
+          adPlaceholderTop: "إعلان (لافتة علوية)",
+          adPlaceholderBottom: "إعلان (لافتة سفلية)",
+        },
+        ru: {
+          title: "💰 RentAbility - Калькулятор Доступной Аренды",
+          description:
+            "Определите, какую арендную плату вы можете себе позволить, исходя из вашего ежемесячного дохода и расходов. Принимайте обоснованные решения о жилье.",
+          monthlyIncomeLabel: "Ваш Ежемесячный Чистый Доход:",
+          monthlyExpensesLabel: "Прочие Ежемесячные Расходы (без аренды):",
+          calculateButton: "Рассчитать Доступную Аренду",
+          resultTitle: "Ваш Анализ Доступности Аренды",
+          recommendedRent: "Рекомендуемая Максимальная Месячная Аренда:",
+          rentToIncomeRatio: "Соотношение Аренда к Доходу (Рекомендуемое):",
+          affordabilityMessageInvalidInput:
+            "Пожалуйста, введите корректные положительные числа для дохода и расходов.",
+          affordabilityMessageTooHighExpenses:
+            "Ваши расходы слишком высоки, чтобы комфортно оплачивать аренду при данном уровне дохода. Рассмотрите возможность сокращения расходов или увеличения дохода.",
+          affordabilityMessageHighRatio:
+            "Внимание: Ваша рекомендуемая арендная плата составляет высокий процент от вашего дохода. Будьте осторожны!",
+          affordabilityMessageGood:
+            "Это кажется комфортной арендой для вашего уровня дохода.",
+          insightsTitle: "Разбивка Бюджета и Аналитика",
+          insightsDescription:
+            "Поймите, куда уходят ваши деньги, и получите персональные рекомендации.",
+          housingRule: "Стандартное Правило Жилья (30% Дохода):",
+          incomeAfterExpenses: "Доход После Прочих Расходов:",
+          discretionaryIncome:
+            "Предполагаемый Свободный Доход (после рекомендуемой аренды):",
+          budgetAdvice:
+            "Стремитесь к тому, чтобы ваша арендная плата составляла не более 30% от вашего чистого дохода для комфортного проживания. Если ваши расходы высоки, рассмотрите возможность их сокращения или поиска более низкой аренды.",
+          adPlaceholderTop: "Реклама (Верхний Баннер)",
+          adPlaceholderBottom: "Реклама (Нижний Баннер)",
+        },
+        ja: {
+          title: "💰 RentAbility - 家賃目安計算機",
+          description:
+            "月収と支出に基づいて、無理なく支払える家賃を計算します。情報に基づいた住宅の意思決定を支援します。",
+          monthlyIncomeLabel: "月あたりの手取り収入:",
+          monthlyExpensesLabel: "その他の月額支出（家賃を除く）:",
+          calculateButton: "家賃目安を計算する",
+          resultTitle: "あなたの家賃負担能力分析",
+          recommendedRent: "推奨される月額最大家賃:",
+          rentToIncomeRatio: "家賃と収入の比率（推奨）:",
+          affordabilityMessageInvalidInput:
+            "収入と支出には有効な正の数値を入力してください。",
+          affordabilityMessageTooHighExpenses:
+            "この収入レベルでは支出が多すぎて家賃を快適に支払うことができません。支出を減らすか、収入を増やすことを検討してください。",
+          affordabilityMessageHighRatio:
+            "警告: 推奨家賃が収入に占める割合が高いです。注意してください！",
+          affordabilityMessageGood:
+            "これはあなたの収入レベルにとって快適な家賃だと思われます。",
+          insightsTitle: "予算の内訳と洞察",
+          insightsDescription:
+            "お金がどこに使われているかを理解し、パーソナライズされたアドバイスを得ましょう。",
+          housingRule: "標準的な住宅費の目安（収入の30%）:",
+          incomeAfterExpenses: "その他の支出後の収入:",
+          discretionaryIncome: "推定される裁量所得（推奨家賃支払い後）:",
+          budgetAdvice:
+            "快適な生活のために、家賃は手取り収入の30%を超えないようにすることを目指してください。支出が多い場合は、それを減らすか、より安い家賃を探すことを検討してください。",
+          adPlaceholderTop: "広告 (上部バナー)",
+          adPlaceholderBottom: "広告 (下部バナー)",
+        },
+        zh: {
+          title: "💰 RentAbility - 您的可负担租金计算器",
+          description:
+            "根据您的月收入和支出，计算您可以轻松负担的租金。做出明智的住房决策。",
+          monthlyIncomeLabel: "您的每月净收入:",
+          monthlyExpensesLabel: "您的其他每月支出（不含租金）:",
+          calculateButton: "计算可负担租金",
+          resultTitle: "您的租金承受能力分析",
+          recommendedRent: "推荐的每月最高租金:",
+          rentToIncomeRatio: "租金收入比（推荐）:",
+          affordabilityMessageInvalidInput: "请输入有效的正数作为收入和支出。",
+          affordabilityMessageTooHighExpenses:
+            "您的开销过高，以目前的收入水平难以轻松负担租金。请考虑减少开销或增加收入。",
+          affordabilityMessageHighRatio:
+            "警告：您推荐的租金占收入的比例很高。请谨慎！",
+          affordabilityMessageGood: "这似乎是适合您收入水平的舒适租金。",
+          insightsTitle: "预算细分与洞察",
+          insightsDescription: "了解您的资金去向，并获得个性化建议。",
+          housingRule: "标准住房规则（收入的30%）:",
+          incomeAfterExpenses: "其他支出后的收入:",
+          discretionaryIncome: "估计的可支配收入（扣除推荐租金后）:",
+          budgetAdvice:
+            "为了舒适的生活，您的租金目标不应超过净收入的30%。如果您的开销很高，请考虑削减开销或寻找更低的租金。",
+          adPlaceholderTop: "广告 (顶部横幅)",
+          adPlaceholderBottom: "广告 (底部横幅)",
+        },
+      };
+
+      // Local Storage Keys
+      const LS_KEY_CALCULATOR_DATA = "rentAbilityCalculatorData";
+      const LS_KEY_CURRENT_LANG = "rentAbilityCurrentLang";
+
+      // Current currency and locale for formatting
+      let currentCurrency = "USD"; // Default currency
+      let currentLocale = "en-US"; // Default locale for formatting numbers
+
+      function updateCurrencySymbol() {
+        currencySymbolSpans.forEach((span) => {
+          span.textContent = getCurrencySymbol(currentCurrency);
+        });
+      }
+
+      function getCurrencySymbol(currencyCode) {
+        const symbols = {
+          USD: "$",
+          EUR: "€",
+          GBP: "£",
+          JPY: "¥",
+          KRW: "₩",
+          CNY: "¥",
+          SAR: "﷼", // Saudi Riyal, common for Arabic regions
+          RUB: "₽",
+        };
+        return symbols[currencyCode] || "$"; // Default to $ if not found
+      }
+
+      function formatCurrency(amount) {
+        return new Intl.NumberFormat(currentLocale, {
+          style: "currency",
+          currency: currentCurrency,
+          minimumFractionDigits: 0, // No decimals for simplicity
+          maximumFractionDigits: 0,
+        }).format(amount);
+      }
+
+      function calculateRent() {
+        const monthlyIncome = parseFloat(monthlyIncomeInput.value);
+        const monthlyExpenses = parseFloat(monthlyExpensesInput.value);
+        const currentLang = document.documentElement.lang; // Get current language for messages
+
+        if (
+          isNaN(monthlyIncome) ||
+          monthlyIncome < 0 ||
+          isNaN(monthlyExpenses) ||
+          monthlyExpenses < 0
+        ) {
+          affordabilityMessage.textContent =
+            translations[currentLang].affordabilityMessageInvalidInput;
+          affordabilityMessage.className = "warning";
+          recommendedRentResult.textContent = formatCurrency(0);
+          rentToIncomeRatioResult.textContent = "0%";
+          housingRuleResult.textContent = formatCurrency(0);
+          incomeAfterExpensesResult.textContent = formatCurrency(0);
+          discretionaryIncomeResult.textContent = formatCurrency(0);
+          return;
+        }
+
+        // Standard recommendation: rent should be no more than 30% of gross income
+        const recommendedRatio = 0.3;
+        const rentBasedOnIncome = monthlyIncome * recommendedRatio;
+
+        // Differentiated Feature: Income after other essential expenses
+        const disposableIncome = monthlyIncome - monthlyExpenses;
+        let finalRecommendedRent = Math.max(
+          0,
+          Math.min(rentBasedOnIncome, disposableIncome)
+        ); // Ensure it's not negative and respects both rules
+
+        // Display results
+        recommendedRentResult.textContent =
+          formatCurrency(finalRecommendedRent);
+        const actualRentToIncomeRatio =
+          (finalRecommendedRent / monthlyIncome) * 100;
+        rentToIncomeRatioResult.textContent = `${actualRentToIncomeRatio.toFixed(
+          0
+        )}%`;
+
+        if (finalRecommendedRent <= 0) {
+          affordabilityMessage.textContent =
+            translations[currentLang].affordabilityMessageTooHighExpenses;
+          affordabilityMessage.className = "warning";
+        } else if (actualRentToIncomeRatio > 35) {
+          // Common threshold for being rent-burdened
+          affordabilityMessage.textContent =
+            translations[currentLang].affordabilityMessageHighRatio;
+          affordabilityMessage.className = "warning";
+        } else {
+          affordabilityMessage.textContent =
+            translations[currentLang].affordabilityMessageGood;
+          affordabilityMessage.className = "highlight"; // Reusing highlight for positive
+        }
+
+        // Update Budget Breakdown & Insights
+        housingRuleResult.textContent = formatCurrency(rentBasedOnIncome);
+        incomeAfterExpensesResult.textContent =
+          formatCurrency(disposableIncome);
+        discretionaryIncomeResult.textContent = formatCurrency(
+          Math.max(0, disposableIncome - finalRecommendedRent)
+        );
+
+        // Update advice based on results
+        if (finalRecommendedRent <= 0 || actualRentToIncomeRatio > 35) {
+          // Combine general advice with specific warning if needed
+          budgetAdvice.textContent =
+            translations[currentLang].budgetAdvice +
+            " " +
+            translations[currentLang].affordabilityMessageTooHighExpenses;
+        } else {
+          budgetAdvice.textContent = translations[currentLang].budgetAdvice;
+        }
+
+        saveCalculatorData(); // Save inputs to local storage
+      }
+
+      // Local Storage Functions
+      function saveCalculatorData() {
+        const data = {
+          income: monthlyIncomeInput.value,
+          expenses: monthlyExpensesInput.value,
+          lang: document.documentElement.lang, // Save current language
+        };
+        localStorage.setItem(LS_KEY_CALCULATOR_DATA, JSON.stringify(data));
+      }
+
+      function loadCalculatorData() {
+        const storedData = localStorage.getItem(LS_KEY_CALCULATOR_DATA);
+        if (storedData) {
+          const data = JSON.parse(storedData);
+          monthlyIncomeInput.value = data.income || "";
+          monthlyExpensesInput.value = data.expenses || "";
+          if (data.lang) {
+            // Load saved language
+            setLanguage(data.lang); // This will also update currency and re-calculate
+            languageSelect.value = data.lang;
+          } else {
+            // If no language saved, just update currency based on current set lang and calculate
+            updateCurrencySymbol();
+            if (monthlyIncomeInput.value || monthlyExpensesInput.value) {
+              calculateRent();
+            }
+          }
+        } else {
+          // If no data saved, ensure initial currency symbols are set and perform initial calculation
+          updateCurrencySymbol();
+          calculateRent(); // Run initial calculation to show 0s and default advice
+        }
+      }
+
+      // Internationalization (i18n) functions
+      function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key] !== undefined) {
+            element.textContent = translations[lang][key];
+          }
+        });
+        localStorage.setItem(LS_KEY_CURRENT_LANG, lang); // Save selected language
+
+        // Update currency and locale based on language (simplified for demonstration)
+        switch (lang) {
+          case "ko":
+            currentCurrency = "KRW";
+            currentLocale = "ko-KR";
+            break;
+          case "ja":
+            currentCurrency = "JPY";
+            currentLocale = "ja-JP";
+            break;
+          case "zh":
+            currentCurrency = "CNY";
+            currentLocale = "zh-CN";
+            break;
+          case "ar":
+            currentCurrency = "SAR";
+            currentLocale = "ar-SA";
+            break;
+          case "ru":
+            currentCurrency = "RUB";
+            currentLocale = "ru-RU";
+            break;
+          case "es":
+            currentCurrency = "EUR";
+            currentLocale = "es-ES";
+            break;
+          default:
+            currentCurrency = "USD";
+            currentLocale = "en-US";
+            break;
+        }
+        updateCurrencySymbol();
+        // Recalculate to update formatted numbers with new currency/locale
+        calculateRent();
+      }
+
+      function initializeLanguage() {
+        const storedLang = localStorage.getItem(LS_KEY_CURRENT_LANG);
+        let userLang = navigator.language.split("-")[0];
+
+        if (storedLang && translations[storedLang]) {
+          userLang = storedLang;
+        } else if (!translations[userLang]) {
+          userLang = "en"; // Default to English if user's browser language isn't supported
+        }
+
+        languageSelect.value = userLang;
+        setLanguage(userLang);
+      }
+
+      // Event Listeners
+      calculateButton.addEventListener("click", calculateRent);
+      monthlyIncomeInput.addEventListener("input", calculateRent);
+      monthlyExpensesInput.addEventListener("input", calculateRent);
+      languageSelect.addEventListener("change", (event) => {
+        setLanguage(event.target.value);
+      });
+
+      // Initial setup on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeLanguage(); // Set language first
+        loadCalculatorData(); // Then load data, which will re-calculate if data exists
+      });
+    </script>
+  </body>
+</html>
